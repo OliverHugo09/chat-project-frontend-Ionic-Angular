@@ -11,16 +11,16 @@ const routes: Routes = [
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
   {
+    path: 'chat-box',
+    loadChildren: () => import('./chat-box/chat-box.module').then( m => m.ChatBoxPageModule)
+  },
+  {
     path: 'register',
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   },
   {
     path: '**', redirectTo: '', pathMatch: 'full'
-  },
-  {
-    path: 'chat-box',
-    loadChildren: () => import('./chat-box/chat-box.module').then( m => m.ChatBoxPageModule)
-  },
+  }
 ];
 @NgModule({
   imports: [
