@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthenGuard } from './service/admin/authen.guard';
 
 const routes: Routes = [
   {
     path: 'chat-online',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule), canActivateChild:[AuthenGuard]
   },
   {
     path: '',

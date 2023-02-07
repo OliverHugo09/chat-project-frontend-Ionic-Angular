@@ -21,15 +21,15 @@
             <!-- <form [formGroup]="formLogin" (ngSubmit)="Login()"> -->
             <form>
               <div class="user-box">
-                <input type="text" name="username">
+                <input type="text" name="username" [(ngModel)]="user.username">
                 <label>Username</label>
               </div>
-              <div class="user-box">
+<!--               <div class="user-box">
                 <input type="email" name="email">
                 <label>Email</label>
-              </div>
+              </div> -->
               <div class="user-box">
-                <input type="password" name="password" >
+                <input type="password" name="password" [(ngModel)]="user.password">
                 <label>Password</label>
               </div>
               <!-- <button [disabled]="!formLogin.valid" type="submit"> -->
@@ -40,7 +40,7 @@
                 <span></span>
                 Iniciar Sesión
               </button>
-              <button class="button" type="submit" >
+              <button class="button" type="submit" (click)="addUser()">
                 <span></span>
                 <span></span>
                 <span></span>
