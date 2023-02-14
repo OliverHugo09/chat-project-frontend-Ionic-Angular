@@ -40,7 +40,7 @@ export class ChatBoxPage implements OnInit {
   }
 
   updateFeedback(data: any){
-    this.feedback = `${data} is typing a message`;
+    this.feedback = `Escribiendo un mensaje`;
   }
 
 }

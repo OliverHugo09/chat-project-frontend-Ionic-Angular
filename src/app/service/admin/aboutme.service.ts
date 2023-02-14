@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Aboutme } from '../../models/admin/aboutme';
 
-const API_URL = 'http://localhost:3000/aboutme/';
+const API_URL = 'http://localhost:3000/';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})

@@ -9,51 +9,49 @@
         <img src="https://www.realmadrid.com/img/vertical_380px/cristiano_550x650_20180917025046.jpg" alt="">
       </ion-avatar>
       <ion-label>
-        <h4>Cristiano Ronaldo</h4>
+        <h4>Cristiano Ronaldo</h4> <div id="feedback"><p>{{feedback}}</p></div>
       </ion-label>
     </ion-item>
   </ion-toolbar>
 </ion-header>
-
+<!-- <input id="handle" type="text" [(ngModel)]="userName" placeholder="Handle" /> -->
 <ion-content>
-  <ion-grid>
+<ion-grid>
 
-    <ion-row>
-      <ion-col>
-        <ion-card>
-          <ion-card-content>
-            Izquierda
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-      <ion-col></ion-col>
-    </ion-row>
+  <ion-row id="output" *ngFor="let data of output">
+    <ion-col>
+      <ion-card>
+        <ion-card-content >
+          {{data.message}}
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+    <ion-col></ion-col>
+  </ion-row>
 
-    <ion-row>
-      <ion-col></ion-col>
-      <ion-col>
-        <ion-card>
-          <ion-card-content>
-            Derecha
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-
-  </ion-grid>
-
+  <ion-row id="output" *ngFor="let data of output">
+    <ion-col></ion-col>
+    <ion-col>
+      <ion-card>
+        <ion-card-content >
+          {{data.message}}
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>
 
 </ion-content>
 
 <ion-footer>
   <ion-toolbar>
-    <ion-textarea 
+    <ion-textarea id="message" type="text" [(ngModel)]="message" placeholder="Message" autocomplete="off"
+    (keypress)="messageTyping()"
       autoGrow 
-      rows="1" 
-      placeholder="Send message" 
+      rows="1"
       class="ion-text-center" >
     </ion-textarea>
-    <ion-buttons slot="end">
+    <ion-buttons slot="end" type="button" id="send" style="cursor: pointer;" (click)="sendMessage()">
       <ion-fab-button size="small" color="primary" >
         <ion-icon name="send"></ion-icon>
       </ion-fab-button>
