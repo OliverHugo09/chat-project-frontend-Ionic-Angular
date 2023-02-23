@@ -6,13 +6,13 @@
   </ion-toolbar>
 </ion-header>
   <ion-content>
-    <ion-list lines="full">
+    <ion-list lines="full" *ngFor="let user of users">
       <ion-item [routerLink]="['/chat-online/chat-box']" button detail="true">
         <ion-avatar slot="start">
-          <img src="https://www.realmadrid.com/img/vertical_380px/cristiano_550x650_20180917025046.jpg" alt="">
+          <img src="{{user.avatar}}" alt="">
         </ion-avatar>
         <ion-label>
-          <h4>Cristiano Ronaldo</h4>
+          <h4>{{user.username}}</h4>
           <p>Holaaaaaaaaaaaaaaaaaaaaaaaaaa siuuuuuuuuuuuuuuuu</p>
         </ion-label>
       </ion-item>

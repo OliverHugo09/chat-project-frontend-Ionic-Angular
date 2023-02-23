@@ -21,10 +21,14 @@ export class RegisterPage implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    this.initProfile();
   }
 
-  addUser() {{
+  initProfile() {
+    this.user.avatar = 'https://via.placeholder.com/150x150';
+  }
+
+  addUser(): void {{
       this.userService.addAppUser(this.user).subscribe(
         next => this.user = next,
         () => null,

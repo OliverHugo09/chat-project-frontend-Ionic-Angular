@@ -1,10 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AppUser } from 'src/app/models/login/app-user';
-import { environment } from 'src/environments/environment';
+import { AppUser } from '../../models/login/app-user';
 
-const API_URL = environment.API_URL + '/users/';
+const API_URL = 'http://localhost:3000/';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -13,7 +12,7 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class RegisterService {
+export class AppUserService {
 
   constructor(private http: HttpClient) { }
 
@@ -25,15 +24,8 @@ export class RegisterService {
     return this.http.get<AppUser>(`${API_URL}${id}`)
   }
 
-  addAppUser(entity:AppUser): Observable<any>{
-    return this.http.post(API_URL, entity, httpOptions);
-  }
-
   updateAppUser(id:number,entity:AppUser): Observable<any>{
     return this.http.put(`${API_URL}${id}`, entity, httpOptions);
   }
 
-  deleteAppUser(id:number){
-    return this.http.delete(`${API_URL}${id}`, httpOptions);
-  }
 }

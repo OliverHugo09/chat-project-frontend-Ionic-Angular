@@ -21,7 +21,8 @@ export class ChatBoxPage implements OnInit {
   }
 
   messageTyping(): void {
-    this.webSocketService.emit('typing', this.userName);    
+    console.log('typing');
+    this.webSocketService.emit('typing', this.userName);
   }
 
   sendMessage(): void {
@@ -39,8 +40,8 @@ export class ChatBoxPage implements OnInit {
     this.output.push(data);
   }
 
-  updateFeedback(data: any){
-    this.feedback = `Escribiendo un mensaje`;
+  updateFeedback(data:any){
+    this.feedback = 'Escribiendo un mensaje';
   }
 
 }
