@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   SECRET_KEY : '`>V(CMAZ~c;GNb,BA*mj[]mEv[aR]*Roe>n}Lz9)',
-  API_URL: 'http://localhost:3000',
+  API_URL: 'http://localhost:3000/',
 }
 /*
  * For easier debugging in development mode, you can import the following file

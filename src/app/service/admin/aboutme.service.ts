@@ -1,9 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Aboutme } from '../../models/admin/aboutme';
 
-const API_URL = 'http://localhost:3000/';
+const API_URL = environment.API_URL + '/aboutme/';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})

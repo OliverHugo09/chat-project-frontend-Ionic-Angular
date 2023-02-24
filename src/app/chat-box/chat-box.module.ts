@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { WebSocketService } from './web-socket.service';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -18,6 +17,6 @@ import { ChatBoxPage } from './chat-box.page';
 
   ],
   declarations: [ChatBoxPage],
-  providers: [WebSocketService]
+  providers: []
 })
 export class ChatBoxPageModule {}

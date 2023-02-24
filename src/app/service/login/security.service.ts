@@ -5,7 +5,7 @@ import { AppUser } from '../../models/login/app-user';
 import { AppUserAuth } from '../../models/login/app-user-auth';
 import { environment } from '../../../environments/environment';
 
-const API_URL = 'http://localhost:3000/'
+const API_URL = environment.API_URL;
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 }

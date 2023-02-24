@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { WebSocketService } from './web-socket.service';
+import { WebSocketService } from '../service/socket/web-socket.service';
 
 @Component({
   selector: 'app-chat-box',
@@ -18,6 +18,7 @@ export class ChatBoxPage implements OnInit {
   ngOnInit(): void {
     this.webSocketService.listen('typing').subscribe((data) => this.updateFeedback(data));
     this.webSocketService.listen('chat').subscribe((data) => this.updateMessage(data));
+    
   }
 
   messageTyping(): void {
