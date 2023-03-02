@@ -7,10 +7,20 @@ ion-content {
 ion-footer {
     ion-toolbar {
         padding: 0 3px;
-        ion-textarea {
+        ion-input {
             border: 1px solid var(--ion-color-medium);
             border-radius: 20px;
             margin: 0.5vh 0;
         }
     }
+}
+
+.local {
+    background-color: #969998;
+    color: white;
+}
+
+.remoto {
+    background-color: #21B36E;
+    color: white;
 }

@@ -1,5 +1,6 @@
 <ion-header>
   <ion-toolbar>
+
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/chat-online/chat-list"></ion-back-button>
     </ion-buttons>
@@ -8,50 +9,54 @@
       <ion-avatar slot="start">
         <img src="https://www.realmadrid.com/img/vertical_380px/cristiano_550x650_20180917025046.jpg" alt="">
       </ion-avatar>
+
       <ion-label>
-        <h4>Cristiano Ronaldo</h4> <div id="feedback"><p>{{feedback}}</p></div>
+        <h4>Cristiano Ronaldo</h4> <div > <span *ngIf="isTyping">Escribiendo un mensaje</span></div>
       </ion-label>
     </ion-item>
+
   </ion-toolbar>
 </ion-header>
-<!-- <input id="handle" type="text" [(ngModel)]="userName" placeholder="Handle" /> -->
+
 <ion-content>
-<ion-grid>
 
-  <ion-row id="output" *ngFor="let data of output">
+<ion-grid *ngFor="let message of chat.chats">
+
+  <ion-row *ngIf="message.messageType === 2" >
     <ion-col>
-      <ion-card>
+      <ion-card class="local">
         <ion-card-content >
-          {{data.message}}
+          {{ message.text }}
         </ion-card-content>
       </ion-card>
     </ion-col>
     <ion-col></ion-col>
   </ion-row>
 
-  <ion-row id="output" *ngFor="let data of output">
+  <ion-row *ngIf="message.messageType === 1">
     <ion-col></ion-col>
     <ion-col>
-      <ion-card>
+      <ion-card class="remoto">
         <ion-card-content >
-          {{data.message}}
+          {{ message.text }}
         </ion-card-content>
       </ion-card>
     </ion-col>
   </ion-row>
+  
 </ion-grid>
 
 </ion-content>
 
 <ion-footer>
   <ion-toolbar>
-    <ion-textarea id="message" type="text" [(ngModel)]="message" placeholder="Message" autocomplete="off"
-    (keypress)="messageTyping()"
-      autoGrow 
+    <ion-input
+      type="text" [(ngModel)]="text" placeholder="Message" autocomplete="off" (keydown.enter)="sendMessage2(); webSocketService.sendStopTyping()" (keypress)="webSocketService.sendTyping()"
+      autoGrow
       rows="1"
-      class="ion-text-center" >
-    </ion-textarea>
-    <ion-buttons slot="end" type="button" id="send" style="cursor: pointer;" (click)="sendMessage()">
+      class="ion-text-center">
+    </ion-input>
+    <ion-buttons slot="end" type="button" id="send" style="cursor: pointer;" (click)="sendMessage2()" (click)="webSocketService.sendStopTyping()">
       <ion-fab-button size="small" color="primary" >
         <ion-icon name="send"></ion-icon>
       </ion-fab-button>

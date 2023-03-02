@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ChatService } from '../service/admin/chat.service';
 import { WebSocketService } from '../service/socket/web-socket.service';
 
 @Component({
@@ -8,41 +9,30 @@ import { WebSocketService } from '../service/socket/web-socket.service';
 })
 export class ChatBoxPage implements OnInit {
 
-  title = 'Websocket Angular client ';
   userName: string;
-  message: string;
   output: any[] = [];
-  feedback: string;
+  text= "";
+  isTyping: boolean = false;
 
-  constructor(private webSocketService: WebSocketService) { }
+  constructor(public webSocketService: WebSocketService, public chat:ChatService) { }
   ngOnInit(): void {
-    this.webSocketService.listen('typing').subscribe((data) => this.updateFeedback(data));
-    this.webSocketService.listen('chat').subscribe((data) => this.updateMessage(data));
-    
-  }
 
-  messageTyping(): void {
-    console.log('typing');
-    this.webSocketService.emit('typing', this.userName);
-  }
-
-  sendMessage(): void {
-    this.webSocketService.emit('chat', {
-      message: this.message,
-      handle: this.userName
+    this.webSocketService.listen('typing').subscribe(() => {
+      this.isTyping = true;
     });
-    this.message = "";    
+
+    this.webSocketService.listen('stopTyping').subscribe(() => {
+      this.isTyping = false;
+    });
   }
 
-  updateMessage(data:any) {
-    this.feedback = '';
-    if(!!!data) return;
-    console.log(`${data.handle} : ${data.message}`);
-    this.output.push(data);
-  }
-
-  updateFeedback(data:any){
-    this.feedback = 'Escribiendo un mensaje';
+  sendMessage2(){
+    let messageInfo = {
+      text:this.text,
+      messageType: 1
+    };
+    this.chat.sendMessage2(messageInfo);
+    this.text = "";
   }
 
 }

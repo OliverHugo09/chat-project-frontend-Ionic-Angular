@@ -25,7 +25,20 @@ export class WebSocketService{
         })
     }
 
-    emit(eventname: string, data: any) {
+    emit(eventname: string, data?: any) {
         this.socket.emit(eventname, data);
     }
+
+    on(eventname: string, messageInfo: any) {
+        this.socket.on(eventname, messageInfo);
+    }
+
+    sendTyping() {
+        this.socket.emit('typing');
+      }
+    
+      sendStopTyping() {
+        this.socket.emit('stopTyping');
+      }
+
 }
