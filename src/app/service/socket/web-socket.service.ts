@@ -35,10 +35,10 @@ export class WebSocketService{
 
     sendTyping() {
         this.socket.emit('typing');
-      }
+    }
     
-      sendStopTyping() {
+    sendStopTyping() {
         this.socket.emit('stopTyping');
-      }
+    }
 
 }

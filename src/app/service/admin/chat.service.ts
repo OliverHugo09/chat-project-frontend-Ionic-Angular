@@ -22,16 +22,19 @@ export class ChatService {
     this.onReceiveMessage();
   }
 
-    
   sendMessage2(messageInfo){
     this.chats.push(messageInfo);
     this.socket.emit("sendMessage2", messageInfo);
-}
+  }
 
   onReceiveMessage(){
     this.socket.on("receiveMessage", (messageInfo) => {
         messageInfo.messageType = 2;
         this.chats.push(messageInfo);
+        setTimeout(() => {
+          document.getElementById("send")?.scrollIntoView({behavior:"smooth"});
+          document.getElementById("recive")?.scrollIntoView({behavior:"smooth"});
+        }, 100);
     });
 }
 
