@@ -56,7 +56,7 @@
       type="text" [(ngModel)]="text" placeholder="Message" autocomplete="off" (ionChange)="onInputChanged($event)" 
        (keydown.enter)="sendMessage2();" (keypress)="webSocketService.sendTyping()"
       autoGrow rows="1"
-      class="ion-text-center" id="textv">
+      class="ion-text-center" id="ion-input">
     </ion-input>
     <ion-buttons slot="end" type="button" id="send" style="cursor: pointer;" (click)="sendMessage2()">
       <ion-fab-button size="small" color="primary" >
