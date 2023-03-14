@@ -4,6 +4,7 @@ import { AppUser } from '../models/login/app-user';
 import { AppUserAuth } from '../models/login/app-user-auth';
 import { SecurityService } from '../service/login/security.service';
 import { AuthenGuard } from '../service/admin/authen.guard';
+import { RegisterService } from '../service/register/register.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginPage implements OnInit {
   constructor(
     private service: SecurityService,
     private router: Router,
-    private check: AuthenGuard
+    private check: AuthenGuard,
+    private userfind: RegisterService
   ) {}
 
   resetObject(){

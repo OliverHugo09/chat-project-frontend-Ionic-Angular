@@ -10,6 +10,8 @@ const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 }
 
+const ACTIVE_USER_KEY = 'activeUser';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -35,5 +37,13 @@ export class RegisterService {
 
   deleteAppUser(id:number){
     return this.http.delete(`${API_URL}${id}`, httpOptions);
+  }
+
+  setActiveUser(userId: string) {
+    localStorage.setItem(ACTIVE_USER_KEY, userId);
+  }
+
+  getActiveUserId(): string | null {
+    return localStorage.getItem(ACTIVE_USER_KEY);
   }
 }

@@ -33,7 +33,8 @@ export class SecurityService {
       tap((resp: AppUserAuth)=>{
         Object.assign(this.securityObject, resp);
         sessionStorage.setItem('token',this.securityObject.token);
-        localStorage.setItem('key',environment.SECRET_KEY)
+        localStorage.setItem('key',environment.SECRET_KEY);
+        localStorage.setItem('activeUserId',this.securityObject.id.toString());
       }),
       catchError(this.handleError)
     )

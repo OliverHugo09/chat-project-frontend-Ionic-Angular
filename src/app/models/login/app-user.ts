@@ -5,4 +5,7 @@ export class AppUser {
     socket_id: number;
     online: number;
     avatar: string;
+    token: string = '';
+    isAuthenticated: number;
+    query: string;
 }
