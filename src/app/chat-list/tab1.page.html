@@ -7,7 +7,7 @@
 </ion-header>
   <ion-content>
     <ion-list lines="full" *ngFor="let user of users">
-      <ion-item [routerLink]="['/chat-online/chat-box/']" button detail="true">
+      <ion-item  button detail="true" (click)="createChatroom(activeUserId, user.id)">
         <ion-avatar slot="start">
           <img src="{{user.avatar}}" alt="">
         </ion-avatar>

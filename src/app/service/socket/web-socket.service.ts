@@ -12,9 +12,15 @@ const httpOptions = {
 export class WebSocketService{
 
     socket: io.Socket;
+    socketId: string;
 
     constructor() {
-        this.socket = io.connect(environment.API_URL);
+        const userId = parseInt(localStorage.getItem('activeUserId')); // Id del usuario
+        this.socket = io.connect(environment.API_URL,{query: { userId }});
+
+        this.socket.on('connect', () => {
+            this.socketId = this.socket.id;
+        });
     }
 
     listen(eventname: string) : Observable<any> {

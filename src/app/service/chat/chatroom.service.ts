@@ -1,27 +1,40 @@
 import { Injectable } from '@angular/core';
-import { io, Socket } from 'socket.io-client';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
+import { ChatRoom } from '../../models/chat/chatroom';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+
+const API_URL = environment.API_URL + 'chatrooms/';
+
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatroomService {
-  private socket: Socket;
   private url = environment.API_URL;
-  constructor() {
-    this.socket = io(this.url);
+
+  constructor(private http: HttpClient ) {
   }
 
-  createChatRoom(userId: string, otherUserId: string): Observable<{ chatRoomId: string }> {
-    this.socket.emit('create chatroom', { userId, otherUserId });
-    return new Observable<{ chatRoomId: string }>(observer => {
-      this.socket.on('chatroom created', (data: { chatRoomId: string }) => {
-        observer.next(data);
-      });
-      this.socket.on('create chatroom error', (error: string) => {
-        observer.error(error);
-      });
-    });
+  createChatRoom2(id_usuario_1: number, id_usuario_2: number): Observable<any>{
+    const entity: ChatRoom = {
+      id_usuario_1: id_usuario_1,
+      id_usuario_2: id_usuario_2,
+    };
+    return this.http.post(API_URL, entity, httpOptions);
   }
+
+  createChatRoom(id_usuario_1: number, id_usuario_2: number): Observable<any> {
+    const entity: ChatRoom = {
+      id_usuario_1: id_usuario_1,
+      id_usuario_2: id_usuario_2,
+    };
+    return this.http.post(API_URL, entity, httpOptions);
+  }
+  
+
 }
