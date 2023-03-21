@@ -16,6 +16,7 @@ export class Tab1Page implements OnInit{
   private subscriptions: Array<Subscription> = [];
   users: AppUser[];
   activeUserId: number;
+  isCreatingChatroom: boolean = false;
 
   constructor(private service: RegisterService, private ChatroomService: ChatroomService) { }
 
@@ -30,31 +31,12 @@ export class Tab1Page implements OnInit{
     this.createOrLoadProduct(id); */
   }
 
-/*   initProduct() {
-    this.chatRoom =  new ChatRoom({
-      chatroom_name: 'chatroom'+Math.floor(Math.random() * 1000),
-    })
-  }
   
-   createOrLoadProduct(id:number) {
-    if (id) {
-      this.chatRoomService.getChatRoom(id).subscribe(
-        next => this.chatRoom = next
-      )
-    } else {
-      this.initProduct();
-    }
-  } */
-
-/*   createChatroom(id_usuario_1: number, id_usuario_2: number) {
-    this.ChatroomService.createChatRoom(this.activeUserId, id_usuario_2).subscribe((chatroom: any) => {
-      window.location.href = `/chat-box/${chatroom.id}`;
-      /* window.location.href = '/chat-box/' + chatroom.id;
-    });
-  } */
 
   createChatroom(id_usuario_1: number, id_usuario_2: number) {
     this.ChatroomService.createChatRoom2(this.activeUserId, id_usuario_2).subscribe((chatroom: any) => {
+      const receiverId = id_usuario_2;
+      localStorage.setItem('receiverId', receiverId.toString());
       window.location.href = `/chat-box/${chatroom.id}`;
     });
   }

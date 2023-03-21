@@ -20,30 +20,30 @@
 
 <ion-content scroll-y="false">
 
-  <ion-grid *ngFor="let message of chat.chats">
-
-    <ion-row *ngIf="message.messageType === 2" >
+  <ion-grid *ngFor="let message of messages">
+    <ng-container *ngIf="message.chatRoomId === chatroomId">
+    <ion-row *ngIf="message.senderId !== activeUserId" >
       <ion-col>
         <ion-card class="remoto">
           <ion-card-content >
-            {{ message.text }}
+            {{ message.content }}
           </ion-card-content>
         </ion-card>
       </ion-col>
       <ion-col></ion-col>
     </ion-row>
 
-    <ion-row *ngIf="message.messageType === 1">
+    <ion-row *ngIf="message.senderId === activeUserId">
       <ion-col></ion-col>
       <ion-col>
         <ion-card class="local">
           <ion-card-content >
-            {{ message.text }}
+            {{ message.content }}
           </ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>
-
+  </ng-container>
   </ion-grid>
   
   <div id="recive"></div>
@@ -53,12 +53,12 @@
 <ion-footer>
   <ion-toolbar>
     <ion-input
-      type="text" [(ngModel)]="text" placeholder="Message" autocomplete="off" (ionChange)="onInputChanged($event)" 
-       (keydown.enter)="sendMessage2();" (keypress)="webSocketService.sendTyping()"
+      type="text" [(ngModel)]="messageText" placeholder="Message" autocomplete="off" (ionChange)="onInputChanged($event)" 
+       (keydown.enter)="sendMessage(messageText)" (keypress)="webSocketService.sendTyping()"
       autoGrow rows="1"
       class="ion-text-center" id="ion-input">
     </ion-input>
-    <ion-buttons slot="end" type="button" id="send" style="cursor: pointer;" (click)="sendMessage2()">
+    <ion-buttons slot="end" type="button" id="send" style="cursor: pointer;" (click)="sendMessage(messageText)">
       <ion-fab-button size="small" color="primary" >
         <ion-icon name="send"></ion-icon>
       </ion-fab-button>

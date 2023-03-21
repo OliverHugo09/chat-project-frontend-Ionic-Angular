@@ -3,8 +3,11 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { WebSocketService } from '../socket/web-socket.service';
+import { map } from 'rxjs/operators';
+import { Message } from 'src/app/models/chat/message';
 
-const API_URL = environment.API_URL + '/aboutme/';
+const API_URL_BYCHATROOM = environment.API_URL + 'messages/getbychatroom/';
+const API_URL = environment.API_URL + 'messages/';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -17,8 +20,10 @@ export class ChatService {
 
     chats= [];
     feedback: string;
+    ChatMessage: any;
+    chatRooms: any[] = [];
 
-  constructor(public socket:WebSocketService) { 
+  constructor(public socket:WebSocketService, private http: HttpClient) { 
     this.onReceiveMessage();
   }
 
@@ -37,5 +42,13 @@ export class ChatService {
         }, 100);
     });
 }
+
+  getMessages(id:number): Observable<Message[]>{
+    return this.http.get<Message[]>(`${API_URL_BYCHATROOM}${id}`)
+  }
+
+  sendMessage(message: Message): Observable<Message> {
+    return this.http.post<Message>(API_URL, message, httpOptions);
+  }
 
 }

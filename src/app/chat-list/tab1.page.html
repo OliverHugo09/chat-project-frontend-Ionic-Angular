@@ -7,7 +7,8 @@
 </ion-header>
   <ion-content>
     <ion-list lines="full" *ngFor="let user of users">
-      <ion-item  button detail="true" (click)="createChatroom(activeUserId, user.id)">
+      <ng-container *ngIf="activeUserId !== user.id">
+      <ion-item  button detail="true" (click)="createChatroom(activeUserId, user.id)" [disabled]="isCreatingChatroom">
         <ion-avatar slot="start">
           <img src="{{user.avatar}}" alt="">
         </ion-avatar>
@@ -16,5 +17,6 @@
           <p>Holaaaaaaaaaaaaaaaaaaaaaaaaaa siuuuuuuuuuuuuuuuu</p>
         </ion-label>
       </ion-item>
+    </ng-container>
     </ion-list>
   </ion-content>
