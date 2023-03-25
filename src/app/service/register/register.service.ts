@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AppUser } from 'src/app/models/login/app-user';
 import { environment } from 'src/environments/environment';
+import { UserModel } from 'src/app/models/chat/user-chatbox';
 
 const API_URL = environment.API_URL + 'users/';
 
