@@ -5,7 +5,6 @@ import { ActivatedRoute } from '@angular/router';
 import { RegisterService } from '../service/register/register.service';
 import { AppUser } from '../models/login/app-user';
 import { Subscription } from 'rxjs';
-import { UserModel } from '../models/chat/user-chatbox';
 
 @Component({
   selector: 'app-chat-box',
@@ -20,11 +19,13 @@ export class ChatBoxPage implements OnInit {
   messages: any[] = [];
   activeUserId: number;
   receiverId: number;
+  activeChatRoomId: number;
   chatroomId: number;
   messageText: string;
   showChatBox: boolean = false;
   receiver: AppUser;
   sender: AppUser;
+
 
   private subscriptions: Array<Subscription> = [];
 
@@ -37,6 +38,7 @@ export class ChatBoxPage implements OnInit {
 
     this.activeUserId = parseInt(localStorage.getItem('activeUserId'));
     this.receiverId = parseInt(localStorage.getItem('receiverId'));
+    this.activeChatRoomId = parseInt(localStorage.getItem('activeChatRoomId'));
     this.showChatBox = true;
 
     this.service.getAppUser(this.receiverId).subscribe(
@@ -100,6 +102,7 @@ export class ChatBoxPage implements OnInit {
         console.log(messages[0].chatRoomId);
         const receivercheck = messages[0].receiverId;
         const sendercheck = messages[0].senderId;
+        localStorage.setItem('activeChatRoomId', messages[0].chatRoomId.toString());
       },
       error => {
         console.error(error);

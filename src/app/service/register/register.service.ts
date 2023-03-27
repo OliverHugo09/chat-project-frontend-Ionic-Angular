@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AppUser } from 'src/app/models/login/app-user';
 import { environment } from 'src/environments/environment';
-import { UserModel } from 'src/app/models/chat/user-chatbox';
 
 const API_URL = environment.API_URL + 'users/';
 
@@ -11,7 +10,7 @@ const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 }
 
-const ACTIVE_USER_KEY = 'activeUser';
+const ACTIVE_USER_KEY = 'activeUserId';
 
 @Injectable({
   providedIn: 'root'
@@ -41,10 +40,23 @@ export class RegisterService {
   }
 
   setActiveUser(userId: string) {
+    
     localStorage.setItem(ACTIVE_USER_KEY, userId);
   }
 
-  getActiveUserId(): string | null {
-    return localStorage.getItem(ACTIVE_USER_KEY);
+  getActiveUserId(): number | null {
+    const userIdString = localStorage.getItem(ACTIVE_USER_KEY);
+    if (userIdString) {
+      return parseInt(userIdString, 10); // 10 indica que se está utilizando la base decimal
+    } else {
+      return null;
+    }
   }
+
+  uploadImage(userId: number, file: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('file', file, file.name);
+    return this.http.post(`${API_URL}${userId}/avatar`, formData);
+  }
+  
 }

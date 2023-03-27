@@ -11,10 +11,12 @@
 
 <ion-content [fullscreen]="true">
   <ion-list lines="full">
-    <ion-item >
+    <ion-item>
       <ion-icon slot="start" name="image-outline"></ion-icon>
-      <ion-label><ion-button fill="clear">Agregar imagen</ion-button></ion-label>
-      
+      <ion-label>
+        <ion-button fill="clear" (click)="onAddImageClick()">Agregar imagen</ion-button>
+        <input type="file" accept="image/*" #fileInput hidden (change)="onFileChange($event)">
+      </ion-label>
     </ion-item>
     <ion-item>
       <ion-icon slot="start" name="log-out-outline"></ion-icon>
