@@ -3,9 +3,13 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
-};
-
+  production: false,
+  SECRET_KEY : '`>V(CMAZ~c;GNb,BA*mj[]mEv[aR]*Roe>n}Lz9)',
+  API_URL: 'http://localhost:3000/',
+  API_NASA: 'https://api.nasa.gov/planetary/apod?api_key=',
+  NASA_KEY: 'h5hlvbC4TnROFEbasAsmXrcd5sM4UvAWY9jI3oSC',
+  API_IMAGE: 'http://localhost:3000/users/',
+}
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

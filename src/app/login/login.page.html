@@ -21,22 +21,22 @@
             <!-- <form [formGroup]="formLogin" (ngSubmit)="Login()"> -->
             <form>
               <div class="user-box">
-                <input type="email" name="email">
+                <input type="text" name="username" required [(ngModel)]="user.username">
                 <label>Email</label>
               </div>
               <div class="user-box">
-                <input type="password" name="password" >
+                <input type="password" name="password" required [(ngModel)]="user.password">
                 <label>Password</label>
               </div>
               <!-- <button [disabled]="!formLogin.valid" type="submit"> -->
-              <button class="button" type="submit" >
+              <button class="button" type="submit" (click)="login()">
                 <span></span>
                 <span></span>
                 <span></span>
                 <span></span>
                 Iniciar Sesión
               </button>
-              <button [routerLink]="['register']" >
+              <button [routerLink]="['register']">
                 <span></span>
                 <span></span>
                 <span></span>

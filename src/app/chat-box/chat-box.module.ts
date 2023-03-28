@@ -13,8 +13,10 @@ import { ChatBoxPage } from './chat-box.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    ChatBoxPageRoutingModule
+    ChatBoxPageRoutingModule,
+
   ],
-  declarations: [ChatBoxPage]
+  declarations: [ChatBoxPage],
+  providers: []
 })
 export class ChatBoxPageModule {}
