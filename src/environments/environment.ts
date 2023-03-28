@@ -7,7 +7,8 @@ export const environment = {
   SECRET_KEY : '`>V(CMAZ~c;GNb,BA*mj[]mEv[aR]*Roe>n}Lz9)',
   API_URL: 'http://localhost:3000/',
   API_NASA: 'https://api.nasa.gov/planetary/apod?api_key=',
-  API_IMAGE: 'http://localhost:3000/users/'
+  NASA_KEY: 'h5hlvbC4TnROFEbasAsmXrcd5sM4UvAWY9jI3oSC',
+  API_IMAGE: 'http://localhost:3000/users/',
 }
 /*
  * For easier debugging in development mode, you can import the following file

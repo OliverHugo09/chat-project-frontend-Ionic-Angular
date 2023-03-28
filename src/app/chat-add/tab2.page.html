@@ -9,9 +9,9 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="apod" fullscreen>
+<ion-content *ngIf="apod">
   <ion-card>
-    <div class="ion-text-center iframe" [innerHTML]="sanitizer.bypassSecurityTrustHtml(apod.media_type === 'image' ? '<img src=' + apod.url + '/>' : '<iframe src=' + apod.url + '></iframe>')"></div>
+    <div class="ion-text-center iframe" [innerHTML]="sanitizer.bypassSecurityTrustHtml(apod.media_type === 'image' ? '<img src=' + apod.url + '>' : '<iframe src=' + apod.url + '></iframe>')"></div>
     <ion-card-header>
       <ion-card-title>{{ apod.title }}</ion-card-title>
       <ion-card-subtitle>{{ apod.date }}</ion-card-subtitle>

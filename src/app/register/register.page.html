@@ -32,6 +32,11 @@
                 <input type="password" name="password" [(ngModel)]="user.password">
                 <label>Password</label>
               </div>
+              <div class="user-box-2">
+                <ion-checkbox [(ngModel)]="usercheck.agree" id="open-modal" [ngModelOptions]="{standalone: true}"></ion-checkbox>
+                <label class="user-box-2-padding">Estoy de acuerdo con los terminos y condiciones</label>
+              </div>
+
               <!-- <button [disabled]="!formLogin.valid" type="submit"> -->
               <button [routerLink]="['']" >
                 <span></span>
@@ -40,7 +45,7 @@
                 <span></span>
                 Iniciar Sesión
               </button>
-              <button class="button" type="submit" (click)="addUser()">
+              <button class="button" type="submit" (click)="addUser()" [disabled]="!usercheck.agree">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -52,3 +57,44 @@
     </ion-row>
   </ion-grid>
 </ion-content>
+
+<!-- Modal de términos y condiciones -->
+<ion-modal trigger="open-modal">
+  <ng-template #terms>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Políticas de Privacidad, Términos y Condiciones</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="closeTerms()">Cerrar</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <div class="modal-content">
+        <p>Bienvenido/a a nuestra aplicación de chat en tiempo real desarrollada con Ionic y Angular utilizando NodeJS. Antes de utilizar nuestra aplicación, lea detenidamente estos términos y condiciones y políticas de privacidad. Al utilizar nuestra aplicación, acepta estos términos y condiciones y políticas de privacidad.</p>
+        <p>Antes de utilizar nuestra aplicación, lea detenidamente estos términos y condiciones y políticas de privacidad. Al utilizar nuestra aplicación, acepta estos términos y condiciones y políticas de privacidad.</p>
+        <ul>
+          <li><strong>Privacidad y Seguridad de Datos:</strong> En nuestra aplicación, la privacidad y seguridad de sus datos son nuestra máxima prioridad. Implementamos medidas de seguridad para proteger sus datos contra cualquier acceso no autorizado. Al utilizar nuestra aplicación, acepta y reconoce que nosotros no nos hacemos responsables por cualquier daño que pueda sufrir como resultado de una violación de la seguridad de sus datos.</li>
+          <li><strong>Almacenamiento de Mensajes:</strong> Los mensajes enviados a través de nuestra aplicación se almacenan en nuestra base de datos para permitir una recuperación y un acceso a los mismos en cualquier momento. Por lo tanto, acepta y reconoce que cualquier mensaje que envíe a través de nuestra aplicación quedará almacenado en nuestra base de datos.</li>
+          <li><strong>Uso Adecuado de la Aplicación:</strong> Al utilizar nuestra aplicación, acepta y reconoce que no utilizará la aplicación de manera inapropiada o ilegal. No permitimos el uso de nuestra aplicación para fines ilegales o para difundir contenido ilegal o inapropiado.</li>
+          <li><strong>Actualizaciones y Cambios en los Términos y Condiciones:</strong> Nos reservamos el derecho de actualizar o cambiar estos términos y condiciones en cualquier momento sin previo aviso. El uso continuado de nuestra aplicación después de cualquier cambio en los términos y condiciones se considerará como su aceptación de dichos cambios.</li>
+          <li><strong>Política de Privacidad:</strong> En nuestra aplicación, la privacidad y seguridad de sus datos son nuestra máxima prioridad. Esta política de privacidad describe cómo recopilamos, usamos y protegemos sus datos personales en nuestra aplicación.</li>
+          <li><strong>Recopilación de Datos:</strong> Recopilamos los datos que nos proporciona al crear una cuenta en nuestra aplicación. Estos datos incluyen su nombre, número de teléfono y dirección de correo electrónico. También recopilamos información sobre el uso de nuestra aplicación, como la frecuencia y el tipo de mensajes enviados y recibidos.</li>
+          <li><strong>Uso de Datos:</strong> Utilizamos sus datos personales para proporcionar y mejorar nuestros servicios en nuestra aplicación. También podemos utilizar sus datos para enviarle actualizaciones y noticias sobre nuestra aplicación y otros productos y servicios que ofrecemos.</li>
+          <li><strong>Protección de Datos:</strong> Implementamos medidas de seguridad para proteger sus datos personales contra cualquier acceso no autorizado o divulgación. No compartimos sus datos personales con terceros a menos que sea necesario para proporcionar nuestros servicios en nuestra aplicación o esté legalmente obligado a hacerlo.</li>
+          <li><strong>Consentimiento:</strong> Al utilizar nuestra aplicación, acepta y da su consentimiento para la recopilación, uso y protección de sus datos personales según lo descrito en esta política de privacidad.</li>
+          <li><strong>Contacto:</strong> Si tiene alguna pregunta o inquietud sobre nuestros términos y condiciones o política de privacidad, no dude en ponerse en contacto con nosotros.</li>
+          <li><strong>Almacenamiento en la Nube:</strong> Nuestra aplicación utiliza servicios de almacenamiento en la nube para almacenar sus datos. Tenga en cuenta que la privacidad y seguridad de sus datos son nuestra máxima prioridad y que implementamos medidas de seguridad para proteger sus datos contra cualquier acceso no autorizado.</li>
+          <li><strong>API de Terceros:</strong> Utilizamos API de terceros para proporcionar funcionalidades adicionales en nuestra aplicación. Tenga en cuenta que estos terceros pueden recopilar y utilizar sus datos según sus propias políticas de privacidad. Por lo tanto, le recomendamos que revise las políticas de privacidad de los terceros antes de utilizar sus servicios.</li>
+          <li><strong>APIs en NodeJS con Webtokens:</strong> Utilizamos APIs en NodeJS con Webtokens para autenticar y autorizar el acceso de los usuarios a nuestra aplicación. Esta implementación asegura que solo los usuarios autorizados puedan acceder a la aplicación y garantiza la seguridad de los datos de los usuarios.</li>
+          <li><strong>Encriptación de Contraseñas con Bcrypt:</strong> En nuestra aplicación utilizamos la función de encriptación de contraseñas con Bcrypt para garantizar la seguridad de las contraseñas de los usuarios.</li>
+          <li><strong>Formularios Reactivos:</strong> Los formularios en nuestra aplicación están desarrollados con Formularios Reactivos, lo que permite una validación de datos más completa y una mejor experiencia de usuario.</li>
+          <li><strong>Protección de Rutas con Webtokens:</strong> Las rutas de nuestra aplicación están protegidas con Webtokens, lo que garantiza que solo los usuarios autorizados puedan acceder a ciertas funcionalidades de la aplicación.</li>
+          <li><strong>Permisos para Acceder al Almacenamiento:</strong> Nuestra aplicación solicita permiso al usuario para acceder al almacenamiento del dispositivo. Este permiso se solicita para garantizar que los datos de la aplicación se puedan almacenar correctamente y de manera segura.</li>
+          <li><strong>Websockets:</strong> Utilizamos Websockets para proporcionar una comunicación en tiempo real entre los usuarios de nuestra aplicación de chat. Esto permite una experiencia de usuario más interactiva y enriquecedora.</li>
+        </ul>
+        <p>En resumen, nos comprometemos a proteger su privacidad y seguridad en todo momento, implementando las mejores prácticas de codificación segura. Al utilizar nuestra aplicación
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>

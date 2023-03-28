@@ -13,7 +13,7 @@ const routes: Routes = [
   },
   {
     path: 'chat-box/:id',
-    loadChildren: () => import('./chat-box/chat-box.module').then( m => m.ChatBoxPageModule)
+    loadChildren: () => import('./chat-box/chat-box.module').then( m => m.ChatBoxPageModule), canActivateChild:[AuthenGuard]
   },
   {
     path: 'register',

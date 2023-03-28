@@ -3,6 +3,7 @@ import { AppUser } from '../models/login/app-user';
 import { RegisterService } from '../service/register/register.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -12,16 +13,24 @@ import { Location } from '@angular/common';
 export class RegisterPage implements OnInit {
   
   user: AppUser = new AppUser();
-  returnUrl = '/login'
+  returnUrl = '/login';
+  public usercheck: any = {
+    agree: false,
+  };
 
   constructor(
     private userService: RegisterService,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    public modalController: ModalController
   ) { }
 
   ngOnInit() {
     this.initProfile();
+  }
+
+  async closeTerms() {
+    return await this.modalController.dismiss();
   }
 
   initProfile() {
@@ -29,6 +38,16 @@ export class RegisterPage implements OnInit {
   }
 
   addUser(): void {{
+    if (!this.usercheck.agree) {
+      alert('Debes aceptar los términos y condiciones');
+      return;
+    }
+  
+    // Verificamos que se haya ingresado un nombre de usuario y una contraseña
+    if (!this.user.username || !this.user.password) {
+      alert('Debes ingresar un nombre de usuario y una contraseña');
+      return;
+    }
       this.userService.addAppUser(this.user).subscribe(
         next => this.user = next,
         () => null,

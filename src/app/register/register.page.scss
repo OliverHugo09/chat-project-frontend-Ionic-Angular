@@ -1,3 +1,27 @@
+.modal-content {
+  margin: 0 20px; /* margen horizontal de 10px */
+}
+
+.modal-content ul li{
+  margin-top: 10px; /* margen horizontal de 10px */
+}
+
+.user-box-2{
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+
+.user-box-2-padding{
+padding-left: 15px;
+}
+
 .login-box {
     z-index: 9999;
     position: absolute;
