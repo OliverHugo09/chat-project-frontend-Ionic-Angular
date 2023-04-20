@@ -5,6 +5,7 @@ import { AppUserAuth } from '../models/login/app-user-auth';
 import { SecurityService } from '../service/login/security.service';
 import { AuthenGuard } from '../service/admin/authen.guard';
 import { RegisterService } from '../service/register/register.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -43,4 +44,5 @@ export class LoginPage implements OnInit {
     ),
     error => this.errorMessage = error
   }
+
 }

@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, tap, throwError } from 'rxjs';
+import { Observable, catchError, tap, throwError } from 'rxjs';
 import { AppUser } from '../../models/login/app-user';
 import { AppUserAuth } from '../../models/login/app-user-auth';
 import { environment } from '../../../environments/environment';
@@ -24,7 +24,7 @@ export class SecurityService {
     this.securityObject.token = '';
   }
 
-  login(entity:AppUser){
+  login(entity:AppUser): Observable<AppUserAuth>{
 
     this.resetSecuriryObject();
 
